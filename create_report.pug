@@ -1,0 +1,39 @@
+doctype html
+html(lang='en')
+	head
+		title Direct Access - Create Report
+	body
+		h1 Create Report
+		form(method='POST', action='/save_report')
+			div.form-group
+				label(for='project') Project:
+				input#project.form-control(type='text' name='project' style='margin-bottom: 10px;')
+
+			div.form-group
+				label(for='building') Building:
+				input#building.form-control(type='text' name='building' style='margin-bottom: 10px;')
+
+			div.form-group
+				label(for='location') Location:
+				input#location.form-control(type='text' name='location' style='margin-bottom: 10px;')
+
+			div.form-group
+				label(for='date') Date:
+				input#date.form-control(type='date' name='date' style='margin-bottom: 10px;')
+
+			div.form-group
+				label(for='surveyors') Surveyors:
+				input#surveyors.form-control(type='test' name='surveyors' style='margin-bottom: 10px;')
+
+			div.form-group
+				label(for='question1') Is there adequate accessible parking space provided?
+				input#question1.form-control(type='checkbox' name='question1' style='margin-bottom: 10px;')
+
+			div.form-group
+				label(for='question2') Are the access aisles marked?
+				input#question2.form-control(type='checkbox' name='question2' style='margin-bottom: 20px;')
+
+			button.btn.btn-primary(type='submit') Save
+        
+
+

@@ -1,0 +1,25 @@
+-
+  var navigation = [
+    {
+      id: 'create_report',
+      link: 'create_report',
+      title: 'Create Report',
+    },
+    {
+      id: 'view_reports',
+      link: 'view_reports',
+      title: 'View Reports',
+    },
+    {
+      id: 'analytics',
+      link: 'analytics',
+      title: 'Analytics',
+    },
+  ]
+  
+nav.navigation
+  ul.navigation__list
+    each item in navigation
+      li.navigation__element
+        a(href=item.link, class='navigation__link--'+item.id).navigation__link=item.title
+        

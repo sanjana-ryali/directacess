@@ -1,0 +1,17 @@
+doctype html
+html(lang='en')
+	head
+		title Direct Access - View Reports
+	body
+		h1 View Reports
+		table(style='500px', border='1')
+			tr
+				th= "ID"
+				th= "PROJECT"
+				th= "BUILDING"
+				
+			for report in reportsList
+				tr
+					td= report.id
+					td= report.project
+					td= report.building
