@@ -10,7 +10,13 @@ html(lang='en')
 				input#project.form-control(type='text' name='project' style='margin-bottom: 10px;')
 
 			div.form-group
-				label(for='building') Building:
+				label(for='buildingtype') Building Type:
+				select(name='dropDown', id='' style='margin-bottom: 10px;')
+					each val in ['School' , 'Retail' , 'Hotel']
+						option=val
+
+			div.form-group
+				label(for='building') Building Name:
 				input#building.form-control(type='text' name='building' style='margin-bottom: 10px;')
 
 			div.form-group
@@ -31,7 +37,11 @@ html(lang='en')
 
 			div.form-group
 				label(for='question2') Are the access aisles marked?
-				input#question2.form-control(type='checkbox' name='question2' style='margin-bottom: 20px;')
+				input#question2.form-control(type='checkbox' name='question2' style='margin-bottom: 10px;')
+
+			div.form-group
+				label(for='question3') Are the faucets accessible?
+				input#question3.form-control(type='checkbox' name='question3' style='margin-bottom: 20px;')
 
 			button.btn.btn-primary(type='submit') Save
         

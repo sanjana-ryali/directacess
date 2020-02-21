@@ -1,0 +1,9 @@
+doctype html
+html(lang='en')
+	head
+		title Direct Access - School Survey
+	body
+		h1 Begin school survey
+		form(method='POST', action='/save_image', enctype='multipart/form-data')
+			input(type='file', name='imageupload')
+			input(type='submit', name='uploadimage', value='Upload Image')
