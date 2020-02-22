@@ -1,50 +1,136 @@
-@import "menu-style.css"
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color:purple;
+  background-image: url(/images/bccp.jpg);
 }
-h1{
-	color:black;
+
+.side-bar-menu{
+  background-image: url(/images/art.jpg);
+  background-size: cover;
+  opacity: 0.75;
+  margin-top: 0;
+  display: block;
+  width:100%;
+  height:187px;
+  float: left;
+}
+
+.filler{
+  height: 80px;
+  border: 2;
 }
 
 a {
   color: #00B7FF;
 }
-/* The sidebar menu */
-.left_menu {
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 160px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  /*background-color: #111;*/ /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
+ul.main-menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width:100%;
 }
 
-/* The navigation menu links */
-.left_menu a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 13px;
-  color: #818181;
+li.sub-menu {
+  float: left;
+}
+
+li.sub-menu a {
   display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 26px;
+  text-decoration: none;
+  font-family: 'Courier', sans-serif;
+  text-transform: uppercase;
+  font-size:30px;
 }
 
-/* When you mouse over the navigation links, change their color */
-.left_menu a:hover {
-  color: #f1f1f1;
+/* Change the link color to #111 (black) on hover */
+li.sub-menu a:hover {
+  background-color: #91a0a1;
 }
 
-/* Style page content */
-.main {
-  margin-left: 160px; /* Same as the width of the sidebar */
-  padding: 0px 10px;
+#map {
+  width: 100%;
+  height: 600px;
 }
 
-table, th, td {
-   border: 1px solid black;
+.form-style-2{
+  max-width: 800px;
+  padding: 10px 12px 10px 10px;
+  font-family:'Courier New', sans-serif;
+  font-size: 17px;  
+  color: #477076;
 }
-
+.form-style-2-heading{
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 20px;
+  font-size: 15px;
+  padding-bottom: 3px;
+}
+.form-style-2 label{
+  margin: 0px 30px 15px 0px;
+}
+.form-style-2 label > span{
+  width: 100px;
+  float: left;
+  padding-top: 8px;
+  padding-right: 5px;
+}
+.form-style-2 span.required{
+  color:red;
+}
+.form-style-2 .tel-number-field{
+  width: 40px;
+  text-align: center;
+}
+.form-style-2 input.input-field, .form-style-2 .select-field{
+  width: 48%; 
+  float: right;
+}
+.form-style-2 input.input-field, 
+.form-style-2 .tel-number-field, 
+.form-style-2 .textarea-field, 
+ .form-style-2 .select-field{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border: 1px solid #C2C2C2;
+  box-shadow: 1px 1px 4px #EBEBEB;
+  -moz-box-shadow: 1px 1px 4px #EBEBEB;
+  -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  padding: 7px;
+  outline: none;
+}
+.form-style-2 .input-field:focus, 
+.form-style-2 .tel-number-field:focus, 
+.form-style-2 .textarea-field:focus,  
+.form-style-2 .select-field:focus{
+  border: 1px solid #4f5758;
+}
+.form-style-2 .textarea-field{
+  height:100px;
+  width: 55%;
+}
+.form-style-2 input[type=submit],
+.form-style-2 input[type=button]{
+  border: none;
+  padding: 8px 15px 8px 15px;
+  background: #477076;
+  color: white;
+  box-shadow: 1px 1px 4px #DADADA;
+  -moz-box-shadow: 1px 1px 4px #DADADA;
+  -webkit-box-shadow: 1px 1px 4px #DADADA;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  float:right;
+}
+.form-style-2 input[type=submit]:hover,
+.form-style-2 input[type=button]:hover{
+  background: #2e484c;
+  color: white;
+}
