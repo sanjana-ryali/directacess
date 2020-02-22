@@ -1,0 +1,21 @@
+doctype html
+html
+	head
+		title= "Direct Access Maps Overview"
+		link(rel='stylesheet' href='https://unpkg.com/leaflet@1.3.1/dist/leaflet.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		script(src='https://unpkg.com/leaflet@1.3.1/dist/leaflet.js')
+		
+		body
+			p Welcome to my maps page
+
+			#map
+			script.
+				var myData = !{JSON.stringify(" ")};
+				// Create variable to hold map element, give initial settings to map
+				var map = L.map('map',{ center: [37.335480, -121.893028], zoom: 11.5});
+				// Add OpenStreetMap tile layer to map element
+				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+					attribution: '© OpenStreetMap'
+				}).addTo(map);
+				L.marker([37.313330,-121.774510],{title:'Library'}).addTo(map).bindPopup('Evergreen Village Library<br>Direct Access Score: 80%').openPopup();

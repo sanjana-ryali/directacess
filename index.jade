@@ -1,0 +1,26 @@
+doctype html
+html
+	head
+		title= "Direct Access"
+		link(rel='stylesheet', href='/stylesheets/style.css')
+
+	body
+
+		include menu
+		div.main-container
+			form(action='', method='post')
+				div.form-style-2
+					label.label(for='nothing') 
+				div.form-style-2
+					label.label(for='name') What is your name?          
+						input.input-field(type='text', name='name')
+				div.form-style-2
+					label.label(for='address') Where are you located?          
+						input.input-field(type='text', name='address')
+				div.form-style-2
+					label.label(for='building') What is the name of your building?          
+						input.input-field(type='text', name='building')
+				div.form-style-2
+					label.label(for='nothing') 
+					input(type='submit', value='Next')
+
