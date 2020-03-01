@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS `reports` (`id` INT PRIMARY KEY AUTO_INCREMENT, `project` varchar(255) NOT NULL, `building` varchar(255) NOT NULL, `location` varchar(255) NOT NULL, `date` DATETIME NOT NULL,  `surveyors` varchar(255) NOT NULL, `question1` BOOLEAN, `question2` BOOLEAN)
+
+
+var con = mysql.createConnection({
+  			host: "localhost",
+  			user: "root",
+  			password: "password"
+		});
+
+		con.connect(function(err) {
+  			if (err) throw err;
+  			console.log("Connected!");
+		});
