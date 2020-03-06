@@ -2,48 +2,37 @@ doctype html
 html(lang='en')
 	head
 		title Direct Access - Create Report
+		link(rel='stylesheet', href='/stylesheets/style.css')
 	body
+		include menu
 		h1 Create Report
-		form(method='POST', action='/save_report')
-			div.form-group
-				label(for='project') Project:
-				input#project.form-control(type='text' name='project' style='margin-bottom: 10px;')
+		form(method='POST', action='/building_report')
+			div.form-style-2
+				label.label(for='project') Project:
+				input#project.form-control.input-field(type='text' name='project' style='margin-bottom: 10px;')
 
-			div.form-group
-				label(for='buildingtype') Building Type:
-				select(name='dropDown', id='' style='margin-bottom: 10px;')
+			div.form-style-2
+				label.label(for='buildingtype') Building Type:
+				select(name='dropDown', id='' class='select-field')
 					each val in ['School' , 'Retail' , 'Hotel']
 						option=val
 
-			div.form-group
-				label(for='building') Building Name:
-				input#building.form-control(type='text' name='building' style='margin-bottom: 10px;')
+			div.form-style-2
+				label.label(for='building') Building Name:
+				input#building.form-control.input-field(type='text' name='building' style='margin-bottom: 10px;')
 
-			div.form-group
-				label(for='location') Location:
-				input#location.form-control(type='text' name='location' style='margin-bottom: 10px;')
+			div.form-style-2
+				label.label(for='location') Location:
+				input#location.form-control.input-field(type='text' name='location' style='margin-bottom: 10px;')
 
-			div.form-group
-				label(for='date') Date:
-				input#date.form-control(type='date' name='date' style='margin-bottom: 10px;')
+			div.form-style-2
+				label.label(for='date') Date:
+				input#date.form-control.input-field(type='date' name='date' style='margin-bottom: 10px;')
 
-			div.form-group
-				label(for='surveyors') Surveyors:
-				input#surveyors.form-control(type='test' name='surveyors' style='margin-bottom: 10px;')
-
-			div.form-group
-				label(for='question1') Is there adequate accessible parking space provided?
-				input#question1.form-control(type='checkbox' name='question1' style='margin-bottom: 10px;')
-
-			div.form-group
-				label(for='question2') Are the access aisles marked?
-				input#question2.form-control(type='checkbox' name='question2' style='margin-bottom: 10px;')
-
-			div.form-group
-				label(for='question3') Are the faucets accessible?
-				input#question3.form-control(type='checkbox' name='question3' style='margin-bottom: 20px;')
-
-			button.btn.btn-primary(type='submit') Save
-        
+			div.form-style-2
+				label.label(for='surveyors') Surveyors:
+				input#surveyors.form-control.input-field(type='test' name='surveyors' style='margin-bottom: 10px;')
+					
+			input(type='submit', value='Next')
 
 

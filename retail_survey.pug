@@ -2,7 +2,138 @@ doctype html
 html(lang='en')
 	head
 		title Direct Access - Retail Survey
+		link(rel='stylesheet', href='/stylesheets/style.css')
 	body
+		include menu
 		h1 Begin retail survey
-		form(method='POST', action='/')
-			button.btn.btn-primary(type='submit') Continue
+		h2 Parking and Exterior
+		div.form-style-2
+				label(for='question1') Total number of parking spaces: 
+				input#question1.form-control(type='text' name='question1' style='margin-bottom: 10px;')
+		div.form-style-2
+				label(for='question2') Total number of handicapped parking spaces: 
+				input#question2.form-control(type='text' name='question1' style='margin-bottom: 10px;')
+
+		form(method='POST', action='/save_image', enctype='multipart/form-data')
+			input(type='file', name='imageupload')
+			input(type='submit', name='uploadimage', value='Upload Image')
+
+		p.space
+
+		div.form-style-2
+				label(for='question3') Are the handicapped parking spaces clearly marked with stripes?
+				input#question3.form-control(type='checkbox' name='question3' style='margin-bottom: 20px;')
+
+		form(method='POST', action='/save_image', enctype='multipart/form-data')
+			input(type='file', name='imageupload')
+			input(type='submit', name='uploadimage', value='Upload Image')
+
+		p.space
+
+		iv.form-style-2
+				label(for='question4') Are there multiple stories? 
+				input#question4.form-control(type='checkbox' name='question4' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question5') If so, is there at least one elevator?
+				input#question5.form-control(type='checkbox' name='question5' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question6') Is the elevator at least 6.5 ft. wide and 6 ft. deep? 
+				input#question6.form-control(type='checkbox' name='question6' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question7') Is there a ramp?
+				input#question7.form-control(type='checkbox' name='question7' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question8') If so, is it at least 36 inches wide?
+				input#question8.form-control(type='checkbox' name='question8' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question9') Are 60% of the entrances accessible?
+				input#question9.form-control(type='checkbox' name='question9' style='margin-bottom: 20px;')
+
+		h2 Store
+		div.form-style-2
+				label(for='question10') In a store, is a 36 inch wide accessible route maintained between display cases?
+				input#question10.form-control(type='checkbox' name='question10' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question11') Is there at least one checkout or sales counter no more than 36 inches high?
+				input#question11.form-control(type='checkbox' name='question11' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question12') Are changing cubicles a minimum of 2000mm x 1500mm?
+				input#question12.form-control(type='checkbox' name='question12' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question13') Is there a quiet zone marked with a clear sign?
+				input#question13.form-control(type='checkbox' name='question13' style='margin-bottom: 20px;')
+
+		form(method='POST', action='/save_image', enctype='multipart/form-data')
+			input(type='file', name='imageupload')
+			input(type='submit', name='uploadimage', value='Upload Image')
+
+		p.space
+
+		div.form-style-2
+				label(for='question14') Is there a bench?
+				input#question14.form-control(type='checkbox' name='question14' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question15') If so, is it cantilevered, 600mm deep and set 480mm above the finished floor level?
+				input#question15.form-control(type='checkbox' name='question15' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question16') Do the door have handles rather than knobs?
+				input#question16.form-control(type='checkbox' name='question16' style='margin-bottom: 20px;')
+
+		form(method='POST', action='/save_image', enctype='multipart/form-data')
+			input(type='file', name='imageupload')
+			input(type='submit', name='uploadimage', value='Upload Image')
+
+		p.space
+
+		div.form-style-2
+				label(for='question17') Is there a place with organized seating, like a food court or an auditorium?
+				input#question17.form-control(type='checkbox' name='question17' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question18') If so, are at least 5% of the fixed seating and fixed tables accessible? 
+				input#question18.form-control(type='checkbox' name='question18' style='margin-bottom: 20px;')
+
+		h2 Bathroom
+		div.form-style-2
+				label(for='question19') Are all toilet room signs marked with the male and female pictograms as well as the appropriate verbal message immediately below the pictogram with the corresponding Braille?
+				input#question19.form-control(type='checkbox' name='question19' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question20') In the bathrooms, are the toilets at least 60 inches wide and do they have a seat between 17 and 19 inches from the base of the unit to the seat top? 
+				input#question20.form-control(type='checkbox' name='question20' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question21') Are there 16 to 18 inches of room between the unit's center line and the side wall?
+				input#question17.form-control(type='checkbox' name='question17' style='margin-bottom: 20px;')
+
+		div.form-style-2
+				label(for='question22') Are the faucets accessible?
+				input#question22.form-control(type='checkbox' name='question22' style='margin-bottom: 20px;')
+
+		form(method='POST', action='/save_image', enctype='multipart/form-data')
+			input(type='file', name='imageupload')
+			input(type='submit', name='uploadimage', value='Upload Image')
+
+		p.space
+
+		input(type='submit', value='Next')
+
+
+
+		
+
+
+
+
+
+

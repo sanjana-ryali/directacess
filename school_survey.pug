@@ -2,8 +2,117 @@ doctype html
 html(lang='en')
 	head
 		title Direct Access - School Survey
+		link(rel='stylesheet', href='/stylesheets/style.css')
 	body
+		include menu
 		h1 Begin school survey
-		form(method='POST', action='/save_image', enctype='multipart/form-data')
-			input(type='file', name='imageupload')
-			input(type='submit', name='uploadimage', value='Upload Image')
+		h2 Parking and Exterior
+		form(method='POST', action='/save_report' enctype='multipart/form-data')
+			input(type="hidden" name="id" value=id)
+			div.form-style-2
+					label(for='num_parking') Total number of parking spaces: 
+					input#num_parking.form-control(type='text' name='num_parking' value='0' style='margin-bottom: 10px;')
+			div.form-style-2
+					label(for='num_handi_parking') Total number of handicapped parking spaces: 
+					input#num_handi_parking.form-control(type='text' name='num_handi_parking' value='0' style='margin-bottom: 10px;')
+
+			input(type='file', name='handi_park_image')
+
+			p.space
+
+			div.form-style-2
+					label(for='if_handi_stripes') Are the handicapped parking spaces clearly marked with stripes?
+					input#if_handi_stripes.form-control(type='checkbox' name='if_handi_stripes' checked=false style='margin-bottom: 20px;')
+
+			input(type='file', name='handi_stripes_image')
+
+			p.space
+
+			div.form-style-2
+					label(for='if_ext_bleachers') Are there exterior bleachers or grandstands?
+					input#if_ext_bleachers.form-control(type='checkbox' name='if_ext_bleachers' checked=false style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_wheelchair') If so, is there wheelchair space integrated into the seating?
+					input#if_wheelchair.form-control(type='checkbox' name='if_wheelchair'  checked=false style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_multi') Are there multiple stories? 
+					input#if_multi.form-control(type='checkbox' name='if_multi'  checked=false style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_elevator') If so, is there at least one elevator?
+					input#if_elevator.form-control(type='checkbox' name='if_elevator'  checked=false style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_elevator_wide') Is the elevator at least 6.5 ft. wide and 6 ft. deep? 
+					input#if_elevator_wide.form-control(type='checkbox' name='if_elevator_wide'  checked=false style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_ramp') Is there a ramp?
+					input#if_ramp.form-control(type='checkbox' name='if_ramp'  checked=false style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_ramp_wide') If so, is it at least 36 inches wide?
+					input#if_ramp_wide.form-control(type='checkbox' name='if_ramp_wide'  checked=false style='margin-bottom: 20px;')
+
+			h2 Classroom
+			div.form-style-2
+					label(for='if_class_wheel') Are all classrooms wheelchair accessible?
+					input#if_class_wheel.form-control(type='checkbox' name='if_class_wheel'  checked=false style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_passage_wide') Do all doors used for passage or entry have a minimum clear width of 36 inches? 
+					input#if_passage_wide.form-control(type='checkbox' name='if_passage_wide'  checked=false style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_door_handle') Do the door have handles rather than knobs?
+					input#if_door_handle.form-control(type='checkbox' name='if_door_handle'  checked=false style='margin-bottom: 20px;')
+
+			input(type='file', name='door_handle_image')
+
+			p.space
+
+			div.form-style-2
+					label(for='if_knee_clear') Are all surface heights for children(age 3-12) 26-30 inches in height and provide a knee clearance of at least 24 inches?
+					input#if_knee_clear.form-control(type='checkbox' name='if_knee_clear'  checked=false style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_class_access_seats') Does the classroom have accessible seating? (At least 27 inches of knee clearance must be provided between the floor and the underside of the table.)
+					input#if_class_access_seats.form-control(type='checkbox' name='if_class_access_seats'  checked=false style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_listen_device') Are assisted listening devices provided?
+					input#if_listen_device.form-control(type='checkbox' name='if_listen_device'  checked=false style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_quiet_zone') Is there a quiet zone marked with a clear sign?
+					input#if_quiet_zone.form-control(type='checkbox' name='if_quiet_zone'  checked=false style='margin-bottom: 20px;')
+
+			input(type='file', name='quiet_zone_image')
+
+			h2 Bathroom
+			div.form-style-2
+					label(for='if_bath_sign') Are all toilet room signs marked with the male and female pictograms as well as the appropriate verbal message immediately below the pictogram with the corresponding Braille?
+					input#if_bath_sign.form-control(type='checkbox' name='if_bath_sign'  checked=false style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_faucets') Are the faucets accessible?
+					input#if_faucets.form-control(type='checkbox' name='if_faucets'  checked=false style='margin-bottom: 20px;')
+
+			input(type='file', name='faucet_image')
+
+			p.space
+
+			input(type='submit', value='Next')
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+doctype html
+html(lang='en')
+	head
+		title Direct Access - View School Report
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		include menu
+		h2 View Report
+		table
+			tr
+				th= "Project Name"
+				th= "Building Name"
+				th= "Location"
+				th= "Surveyors"
+				th= "Date"
+				th= "Accessibility Rating"
+				
+			for report in reportsList
+				tr
+					td= report.project
+					td= report.building
+					td= report.location
+					td= report.surveyors
+					td= report.date
+					td= "9.3/10"
+						img(src="/images/star.png" style='height:20px;width:20px')
+		
+		h2 School Report
+		table
+			tr
+				th= "Total number of parking spaces:"
+				th= "Total number of handicapped parking spaces:"
+				th(style='height:300px;width:200px')= "Handipcap Parking"
+				th= "If so, is there wheelchair space integrated into the seating?"
+				
+			for schoolreport in schoolReportsList
+				tr
+					td= schoolreport.num_parking
+					td= schoolreport.num_handi_parking
+					td(style='height:300px;width:300px')
+						img(src="/images/"+schoolreport.handi_park_image style='height:300px;width:300px')
+					td= schoolreport.if_wheelchair

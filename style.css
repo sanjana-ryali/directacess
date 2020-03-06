@@ -18,6 +18,10 @@ body {
   height: 80px;
   border: 2;
 }
+.space{
+  height: 1px;
+  border: 0.5;
+}
 
 a {
   color: #00B7FF;
@@ -42,7 +46,7 @@ li.sub-menu a {
   text-decoration: none;
   font-family: 'Courier', sans-serif;
   text-transform: uppercase;
-  font-size:30px;
+  font-size:25px;
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -56,7 +60,7 @@ li.sub-menu a:hover {
 }
 
 .form-style-2{
-  max-width: 800px;
+  max-width: 500px;
   padding: 10px 12px 10px 10px;
   font-family:'Courier New', sans-serif;
   font-size: 17px;  
@@ -84,26 +88,12 @@ li.sub-menu a:hover {
   width: 40px;
   text-align: center;
 }
-.form-style-2 input.input-field, .form-style-2 .select-field{
-  width: 48%; 
-  float: right;
-}
+
 .form-style-2 input.input-field, 
 .form-style-2 .tel-number-field, 
 .form-style-2 .textarea-field, 
  .form-style-2 .select-field{
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  border: 1px solid #C2C2C2;
-  box-shadow: 1px 1px 4px #EBEBEB;
-  -moz-box-shadow: 1px 1px 4px #EBEBEB;
-  -webkit-box-shadow: 1px 1px 4px #EBEBEB;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  padding: 7px;
-  outline: none;
+  margin-bottom: 10px;
 }
 .form-style-2 .input-field:focus, 
 .form-style-2 .tel-number-field:focus, 
@@ -133,4 +123,20 @@ li.sub-menu a:hover {
 .form-style-2 input[type=button]:hover{
   background: #2e484c;
   color: white;
+}
+table {
+  width: 1800px;
+}
+tr { 
+  display: block; 
+  float: left; 
+}
+th, td { 
+  display: block; 
+  height: 30px;
+  font-family: 'Courier', sans-serif;
+  font-size: 17px;  
+  color: #477076;
+  text-align: left;
+  padding: 8px 15px 8px 15px;
 }

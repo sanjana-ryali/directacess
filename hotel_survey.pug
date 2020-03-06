@@ -2,7 +2,135 @@ doctype html
 html(lang='en')
 	head
 		title Direct Access - Hotel Survey
+		link(rel='stylesheet', href='/stylesheets/style.css')
 	body
+		include menu
 		h1 Begin hotel survey
-		form(method='POST', action='/')
-			button.btn.btn-primary(type='submit') Continue
+		h2 Parking and Exterior
+		form(method='POST', action='/save_hotel_report' enctype='multipart/form-data')
+			input(type="hidden" name="id" value=id)
+			div.form-style-2
+					label(for='num_parking') Total number of parking spaces: 
+					input#num_parking.form-control(type='text' name='num_parking' value='0' style='margin-bottom: 10px;')
+			div.form-style-2
+					label(for='num_handi_parking') Total number of handicapped parking spaces: 
+					input#num_handi_parking.form-control(type='text' name='num_handi_parking' value='0' style='margin-bottom: 10px;')
+
+			input(type='file', name='handi_park_image')
+
+			p.space
+
+			div.form-style-2
+					label(for='if_handi_stripes') Are the handicapped parking spaces clearly marked with stripes?
+					input#if_handi_stripes.form-control(type='checkbox' name='if_handi_stripes' style='margin-bottom: 20px;')
+
+			input(type='file', name='handi_stripes_image')
+
+			p.space
+
+			div.form-style-2
+					label(for='if_multi') Are there multiple stories? 
+					input#if_multi.form-control(type='checkbox' name='if_multi' style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_elevator') If so, is there at least one elevator?
+					input#if_elevator.form-control(type='checkbox' name='if_elevator' style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_elevator_wide') Is the elevator at least 6.5 ft. wide and 6 ft. deep? 
+					input#if_elevator_wide.form-control(type='checkbox' name='if_elevator_wide' style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_ramp') Is there a ramp?
+					input#if_ramp.form-control(type='checkbox' name='if_ramp' style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_ramp_wide') If so, is it at least 36 inches wide?
+					input#if_ramp_wide.form-control(type='checkbox' name='if_ramp_wide' style='margin-bottom: 20px;')
+
+			h2 Dining and Lobby
+			div.form-style-2
+					label(for='if_min_shelf_clear') Is there a minimum clearance of 36 inches between all shelves?
+					input#if_min_shelf_clear.form-control(type='checkbox' name='if_min_shelf_clear' style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_counters_34') At bars or other dining counters, are 5% of counters no more than 34 inches in height? 
+					input#if_counters_34.form-control(type='checkbox' name='if_counters_34' style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_accessible_route') Are there accessible routes into and through the hotel room, including patios, terraces, and balconies?
+					input#if_accessible_route.form-control(type='checkbox' name='if_accessible_route' style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_quiet_zone') Is there a quiet zone marked with a clear sign?
+					input#if_quiet_zone.form-control(type='checkbox' name='if_quiet_zone' style='margin-bottom: 20px;')
+
+			input(type='file', name='quiet_zone_image')
+
+			h2 Guest Rooms 
+			div.form-style-2
+					label(for='total_guest_rooms') Total number of guest rooms provided:
+					input#total_guest_rooms.form-control(type='text' name='total_guest_rooms' value='0' style='margin-bottom: 10px;')
+
+			p.space
+
+			div.form-style-2
+					label(for='guest_rooms_rollin') Total number of guest rooms with roll-in showers
+					input#guest_rooms_rollin.form-control(type='text' name='guest_rooms_rollin' value='0' style='margin-bottom: 10px;')
+
+			p.space
+
+			div.form-style-2
+					label(for='guest_rooms_comms') Total number of guest rooms with communication features.
+					input#guest_rooms_comms.form-control(type='text' name='guest_rooms_comms' value='0' style='margin-bottom: 10px;')
+
+			p.space
+
+			div.form-style-2
+					label(for='if_wheel_turn') Is there wheelchair turning space within the guest room?
+					input#if_wheel_turn.form-control(type='checkbox' name='if_wheel_turn' style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_clear_floor') Is there clear floor space adjacent to beds?
+					input#if_clear_floor.form-control(type='checkbox' name='if_clear_floor' style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_door_passage') Do all doors used for passage or entry have a minimum clear width of 36 inches? 
+					input#if_door_passage.form-control(type='checkbox' name='if_door_passage' style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_door_handle') Do the door have handles rather than knobs?
+					input#if_door_handle.form-control(type='checkbox' name='if_door_handle' style='margin-bottom: 20px;')
+
+			input(type='file', name='door_handle_image')
+
+			h2 Bathroom
+			div.form-style-2
+					label(for='if_bath_sign') Are all toilet room signs marked with the male and female pictograms as well as the appropriate verbal message immediately below the pictogram with the corresponding Braille?
+					input#if_bath_sign.form-control(type='checkbox' name='if_bath_sign' style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_room_in_stall') Are there 16 to 18 inches of room between the unit's center line and the side wall?
+					input#if_room_in_stall.form-control(type='checkbox' name='if_room_in_stall' style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_toilets_wide') Are the toilets wide enough?
+					input#if_toilets_wide.form-control(type='checkbox' name='if_toilets_wide' style='margin-bottom: 20px;')
+
+			div.form-style-2
+					label(for='if_faucets') Are the faucets accessible?
+					input#if_faucets.form-control(type='checkbox' name='if_faucets' style='margin-bottom: 20px;')
+
+			input(type='file', name='faucet_image')
+
+			p.space
+
+			input(type='submit', value='Next')
+
+
+
+
+
+			
+
+

@@ -1,6 +1,11 @@
 -
   var navigation = [
     {
+      id: 'index',
+      link: '/',
+      title: 'Home',
+    },
+    {
       id: 'create_report',
       link: 'create_report',
       title: 'Create Report',
@@ -21,10 +26,11 @@
       title: 'Get Connected',
     }
   ]
-  
-nav.navigation
-  ul.navigation__list
+div.side-bar-menu
+  p.filler  
+  nav.navigation
+  ul.main-menu
     each item in navigation
-      li.navigation__element
+      li.sub-menu
         a(href=item.link, class='navigation__link--'+item.id).navigation__link=item.title
         

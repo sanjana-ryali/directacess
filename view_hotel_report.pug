@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+	head
+		title Direct Access - Create Report
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		include menu
+		h1 View Report
+		table(style='500px', border='1')
+			tr
+				th= "PROJECT"
+				th= "BUILDING"
+				th= "LOCATION"
+				th= "SURVEYORS"
+				th= "DATE"
+				
+			for report in reportsList
+				tr
+					td= report.project
+					td= report.building
+					td= report.location
+					td= report.surveyors
+					td= report.date
+		h2 School Report
+		table(style='500px', border='1')
+			tr
+				th= "PROJECT"
+				th= "BUILDING"
+				
+			for schoolreport in schoolReportsList
+				tr
+					td= schoolreport.num_parking
+					td= schoolreport.if_wheelchair

@@ -22,5 +22,102 @@ module.exports = {
 			else console.log(data);           // successful response
 		});
     	
+	},
+	processHandicapImage: function(filename) {
+		console.log("Calling AWS Rekognition");
+    	var rekognition = new AWS.Rekognition();
+
+		var params = {
+			ProjectVersionArn: "arn:aws:rekognition:us-east-2:134790762361:project/Handicapped_Parking/version/Handicapped_Parking.2020-02-20T17.04.29/1582247070057",
+			Image: {
+				S3Object: {
+   					Bucket: "testing-data-ada", 
+   					Name: filename,
+  				}
+ 			},
+		};
+		rekognition.detectCustomLabels(params, function(err, data) {""
+			if (err) console.log(err, err.stack); // an error occurred
+			else console.log(data);           // successful response
+		});
+    	
+	},
+	processWhiteStripesImage: function(filename) {
+		console.log("Calling AWS Rekognition");
+    	var rekognition = new AWS.Rekognition();
+
+		var params = {
+			ProjectVersionArn: "arn:aws:rekognition:us-east-2:134790762361:project/White_Stripes_Handicapped_Parking/version/White_Stripes_Handicapped_Parking.2020-02-21T16.42.12/1582332132953",
+			Image: {
+				S3Object: {
+   					Bucket: "testing-data-ada", 
+   					Name: filename,
+  				}
+ 			},
+		};
+		rekognition.detectCustomLabels(params, function(err, data) {""
+			if (err) console.log(err, err.stack); // an error occurred
+			else console.log(data);           // successful response
+		});
+    	
+	},
+	processDoorHandleImage: function(filename) {
+		console.log("Calling AWS Rekognition");
+    	var rekognition = new AWS.Rekognition();
+
+		var params = {
+			ProjectVersionArn: "arn:aws:rekognition:us-east-2:134790762361:project/Door_Handle/version/Door_Handle.2020-02-19T14.17.46/1582150666420",
+			Image: {
+				S3Object: {
+   					Bucket: "testing-data-ada", 
+   					Name: filename,
+  				}
+ 			},
+		};
+		rekognition.detectCustomLabels(params, function(err, data) {""
+			if (err) console.log(err, err.stack); // an error occurred
+			else console.log(data);           // successful response
+		});
+    	
+	},
+	processQuietZoneImage: function(filename) {
+		console.log("Calling AWS Rekognition");
+    	var rekognition = new AWS.Rekognition();
+
+		var params = {
+			ProjectVersionArn: "arn:aws:rekognition:us-east-2:134790762361:project/Quiet_Zone/version/Quiet_Zone.2020-02-18T15.59.11/1582070351386",
+			Image: {
+				S3Object: {
+   					Bucket: "testing-data-ada", 
+   					Name: filename,
+  				}
+ 			},
+		};
+		rekognition.detectCustomLabels(params, function(err, data) {""
+			if (err) console.log(err, err.stack); // an error occurred
+			else console.log(data);           // successful response
+		});
+    	
+	},
+	processFaucetsImage: function(filename) {
+		console.log("Calling AWS Rekognition");
+    	var rekognition = new AWS.Rekognition();
+
+		var params = {
+			ProjectVersionArn: "arn:aws:rekognition:us-east-2:134790762361:project/Faucets/version/Faucets.2020-02-29T17.09.41/1583024981384",
+			Image: {
+				S3Object: {
+   					Bucket: "testing-data-ada", 
+   					Name: filename,
+  				}
+ 			},
+		};
+		rekognition.detectCustomLabels(params, function(err, data) {""
+			if (err) console.log(err, err.stack); // an error occurred
+			else console.log(data);           // successful response
+		});
+    	
 	}
+
+
 }
