@@ -37,6 +37,14 @@ html(lang='en')
 				tr
 					td= schoolreport.num_parking
 					td= schoolreport.num_handi_parking
-					td(style='height:300px;width:300px')
-						img(src="/images/"+schoolreport.handi_park_image style='height:300px;width:300px')
+					td(style='display:grid')
+						canvas#handi_img(style='grid-column:1;grid-row:1;z-index:3')
+						img(src="/images/"+schoolreport.handi_park_image style='grid-column:1;grid-row:1;z-index:2')
 					td= schoolreport.if_wheelchair
+		script.
+			var c = document.getElementById("handi_img");
+			var ctx = c.getContext("2d");
+			ctx.lineWidth = "2";
+			ctx.strokeStyle = "red";
+			ctx.rect(#{handicapImgInfo.top}, #{handicapImgInfo.left}, #{handicapImgInfo.width}, #{handicapImgInfo.height});
+			ctx.stroke();

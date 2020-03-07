@@ -1,6 +1,7 @@
 var mysql = require('mysql');
 const uuidv4 = require('uuid/v4');
 const ai = require('../config/analyze_image')
+const fs = require('fs');
 
 module.exports = {
 	createDBConnection: function() {
@@ -96,7 +97,10 @@ module.exports = {
     const if_bath_sign = (req.body.if_bath_sign == undefined) ? false : true;
     const if_faucets = (req.body.if_faucets == undefined) ? false : true;
 
+
     ai.processHandicapImage(handicap_parking_img);
+    var handicapImgInfo = JSON.parse(fs.readFileSync('config-files/'+handicap_parking_img+'.json'));
+    console.log("image info: "+handicapImgInfo);
 
     var values = [];
 
@@ -154,7 +158,7 @@ module.exports = {
         console.log(schoolReportsList);
         console.log("reportsList in saveSchoolReport");
         console.log(reportsList);
-        res.render('view_school_report', { reportsList: reportsList, schoolReportsList: schoolReportsList});
+        res.render('view_school_report', { reportsList: reportsList, schoolReportsList: schoolReportsList, handicapImgInfo: handicapImgInfo});
     });
     
   },

@@ -38,6 +38,7 @@ router.get('/view_reports', function(req, res, next) {
   dbconn.getData(res);
 });
 router.get('/analytics', function(req, res, next) {
+  ai.processHandicapImage("test-handi-pl.jpg");
   res.render('analytics', { title: 'Analytics' });
 });
 
