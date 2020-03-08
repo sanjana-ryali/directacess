@@ -1,0 +1,1 @@
+aws rekognition stop-project-version --project-version-arn "arn:aws:rekognition:us-east-2:134790762361:project/White_Stripes_Handicapped_Parking/version/White_Stripes_Handicapped_Parking.2020-02-21T16.42.12/1582332132953" --endpoint-url https://rekognition.us-east-2.amazonaws.com --region us-east-2

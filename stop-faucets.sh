@@ -1,0 +1,1 @@
+aws rekognition stop-project-version --project-version-arn "arn:aws:rekognition:us-east-2:134790762361:project/Faucets/version/Faucets.2020-02-29T17.09.41/1583024981384" --endpoint-url https://rekognition.us-east-2.amazonaws.com --region us-east-2

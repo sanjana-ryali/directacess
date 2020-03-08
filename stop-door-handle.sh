@@ -1,0 +1,1 @@
+aws rekognition stop-project-version --project-version-arn "arn:aws:rekognition:us-east-2:134790762361:project/Door_Handle/version/Door_Handle.2020-02-19T14.17.46/1582150666420" --endpoint-url https://rekognition.us-east-2.amazonaws.com --region us-east-2

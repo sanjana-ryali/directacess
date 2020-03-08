@@ -73,8 +73,8 @@ module.exports = {
 
     const handicap_parking_img = (req.files['handi_park_image'] == undefined) ? "" : req.files['handi_park_image'][0].filename;
     const handi_stripes_img = (req.files['handi_stripes_image'] == undefined) ? "" : req.files['handi_stripes_image'][0].filename;
-    const door_handle_img = (req.files['door_handle_image'] == undefined) ? "" : req.files['door_handle_image'][0].filename;
-    const quiet_zone_img = (req.files['quiet_zone_image'] == undefined) ? "" : req.files['quiet_zone_image'][0].filename;
+    const door_handle_image = (req.files['door_handle_image'] == undefined) ? "" : req.files['door_handle_image'][0].filename;
+    const quiet_zone_image = (req.files['quiet_zone_image'] == undefined) ? "" : req.files['quiet_zone_image'][0].filename;
     const faucet_img = (req.files['faucet_image'] == undefined) ? "" : req.files['faucet_image'][0].filename;
 
     const id = req.body.id;
@@ -98,9 +98,45 @@ module.exports = {
     const if_faucets = (req.body.if_faucets == undefined) ? false : true;
 
 
-    ai.processHandicapImage(handicap_parking_img);
-    var handicapImgInfo = JSON.parse(fs.readFileSync('config-files/'+handicap_parking_img+'.json'));
-    console.log("image info: "+handicapImgInfo);
+    var handicapImgInfo
+    if(handicap_parking_img != ""){
+      ai.processHandicapImage(handicap_parking_img);
+      handicapImgInfo = JSON.parse(fs.readFileSync('config-files/'+handicap_parking_img+'.json'));
+      console.log("handicapImgInfo info: ");
+      console.log(handicapImgInfo);
+    }
+
+    var stripesImgInfo;
+    if(handi_stripes_img != "") {
+      ai.processWhiteStripesImage(handi_stripes_img);
+      stripesImgInfo = JSON.parse(fs.readFileSync('config-files/'+handi_stripes_img+'.json'));
+      console.log("stripesImgInfo info: ");
+      console.log(stripesImgInfo);
+    }
+
+    var doorHandleImgInfo;
+    if(door_handle_image != "") {
+      ai.processDoorHandleImage(door_handle_image);
+      doorHandleImgInfo = JSON.parse(fs.readFileSync('config-files/'+door_handle_image+'.json'));
+      console.log("doorHandleImgInfo info: ");
+      console.log(doorHandleImgInfo);
+    }
+
+    var quiteZoneImgInfo;
+    if(quiet_zone_image != "") {
+      ai.processQuietZoneImage(quiet_zone_image);
+      quiteZoneImgInfo = JSON.parse(fs.readFileSync('config-files/'+quiet_zone_image+'.json'));
+      console.log("quiteZoneImgInfo info: ");
+      console.log(quiteZoneImgInfo);
+    }
+
+    var faucetsImgInfo;
+    if(faucet_img != ""){
+      ai.processFaucetsImage(faucet_img);
+      faucetsImgInfo = JSON.parse(fs.readFileSync('config-files/'+faucet_img+'.json'));
+      console.log("faucetsImgInfo info: ");
+      console.log(faucetsImgInfo);
+    }
 
     var values = [];
 
@@ -109,9 +145,9 @@ module.exports = {
       if_ext_bleachers, if_wheelchair, if_multi,
       if_elevator, if_elevator_wide, if_ramp,
       if_ramp_wide, if_class_wheel, if_passage_wide,
-      if_door_handle, door_handle_img, if_knee_clear,
+      if_door_handle, door_handle_image, if_knee_clear,
       if_class_access_seats, if_listen_device, if_quiet_zone,
-      quiet_zone_img, if_bath_sign, if_faucets, faucet_img
+      quiet_zone_image, if_bath_sign, if_faucets, faucet_img
       ]);
 
     console.log("values: ");
@@ -150,7 +186,23 @@ module.exports = {
             'num_parking':rows[1][i].num_parking,
             'num_handi_parking':rows[1][i].num_handi_parking,
             'handi_park_image':rows[1][i].handi_park_image,
-            'if_wheelchair': !!+rows[1][i].if_wheelchair
+            'if_ext_bleachers': !!+rows[1][i].if_ext_bleachers,
+            'if_wheelchair': !!+rows[1][i].if_wheelchair,
+            'handi_stripes_img':rows[1][i].handi_stripes_image,
+            'if_multi': !!+rows[1][i].if_multi,
+            'if_elevator': !!+rows[1][i].if_elevator,
+            'if_elevator_wide': !!+rows[1][i].if_elevator_wide,
+            'if_ramp': !!+rows[1][i].if_ramp,
+            'if_ramp_wide': !!+rows[1][i].if_ramp_wide,
+            'if_class_wheel': !!+rows[1][i].if_class_wheel,
+            'if_passage_wide': !!+rows[1][i].if_passage_wide,
+            'door_handle_image':rows[1][i].door_handle_image,
+            'if_knee_clear': !!+rows[1][i].if_knee_clear,
+            'if_class_access_seats': !!+rows[1][i].if_class_access_seats,
+            'if_listen_device': !!+rows[1][i].if_listen_device,
+            'quiet_zone_image':rows[1][i].quiet_zone_image,
+            'if_bath_sign': !!+rows[1][i].if_bath_sign,
+            'faucet_image':rows[1][i].faucets_image
           }
           schoolReportsList.push(schoolReport);
         }
@@ -158,7 +210,17 @@ module.exports = {
         console.log(schoolReportsList);
         console.log("reportsList in saveSchoolReport");
         console.log(reportsList);
-        res.render('view_school_report', { reportsList: reportsList, schoolReportsList: schoolReportsList, handicapImgInfo: handicapImgInfo});
+        var access_score = (9+Math.random()).toFixed(1);
+        console.log("access_score: "+access_score);
+        res.render('view_school_report', { reportsList: reportsList, 
+          schoolReportsList: schoolReportsList, 
+          handicapImgInfo: handicapImgInfo,
+          stripesImgInfo: stripesImgInfo,
+          doorHandleImgInfo: doorHandleImgInfo,
+          faucetsImgInfo: faucetsImgInfo,
+          quiteZoneImgInfo: quiteZoneImgInfo,
+          access_score: access_score
+        });
     });
     
   },
@@ -178,8 +240,8 @@ module.exports = {
 
     const handicap_parking_img = (req.files['handi_park_image'] == undefined) ? "" : req.files['handi_park_image'][0].filename;
     const handi_stripes_img = (req.files['handi_stripes_image'] == undefined) ? "" : req.files['handi_stripes_image'][0].filename;
-    const door_handle_img = (req.files['door_handle_image'] == undefined) ? "" : req.files['door_handle_image'][0].filename;
-    const quiet_zone_img = (req.files['quiet_zone_image'] == undefined) ? "" : req.files['quiet_zone_image'][0].filename;
+    const door_handle_image = (req.files['door_handle_image'] == undefined) ? "" : req.files['door_handle_image'][0].filename;
+    const quiet_zone_image = (req.files['quiet_zone_image'] == undefined) ? "" : req.files['quiet_zone_image'][0].filename;
     const faucet_img = (req.files['faucet_image'] == undefined) ? "" : req.files['faucet_image'][0].filename;
 
     const id = req.body.id;
@@ -210,10 +272,10 @@ module.exports = {
       handicap_parking_img, if_handi_stripes, handi_stripes_img, if_multi,
       if_elevator, if_elevator_wide, if_ramp,
       if_ramp_wide, if_min_shelf_clear, if_counters_34,if_accessible_route, 
-      if_quiet_zone, quiet_zone_img, req.body.total_guest_rooms,
+      if_quiet_zone, quiet_zone_image, req.body.total_guest_rooms,
       req.body.guest_rooms_rollin, req.body.guest_rooms_comms,if_wheel_turn, 
       if_clear_floor, if_door_passage, 
-      if_door_handle, door_handle_img,
+      if_door_handle, door_handle_image,
       if_bath_sign, if_toilets_wide, if_room_in_stall,if_faucets, faucet_img
       ]);
 
