@@ -22,7 +22,7 @@ html(lang='en')
 					td= report.location
 					td= report.surveyors
 					td= report.date
-					td= "9.3/10"
+					td= access_score+"/10"
 						img(src="/images/star.png" style='height:20px;width:20px')
 		
 		h2 School Report
@@ -30,21 +30,127 @@ html(lang='en')
 			tr
 				th= "Total number of parking spaces:"
 				th= "Total number of handicapped parking spaces:"
-				th(style='height:300px;width:200px')= "Handipcap Parking"
+				th(style='height:300px')= "Is the handicapped parking clearly marked?"
+				th(style='height:300px')= "Are the handicapped parking spaces clearly marked with stripes?"
+				th= "Are there exterior bleachers or grandstands?"
 				th= "If so, is there wheelchair space integrated into the seating?"
+				th= "Are there multiple stories?"
+				th= "If so, is there at least one elevator?"
+				th= "Is the elevator at least 6.5 ft. wide and 6 ft. deep?"
+				th= "Is there a ramp?"
+				th= "If so, is it at least 36 inches wide?"
+				th= "Are all classrooms wheelchair accessible?"
+				th= "Do all doors have a minimum clear width of 36 inches?"
+				th(style='height:300px')= "Do the door have handles rather than knobs?"
+				th= "Are all surface heights knee clearance of at least 24 inches?"
+				th= "Does the classroom have accessible seating? "
+				th= "Are assisted listening devices provided?"
+				th(style='height:300px')= "Is there a quiet zone marked with a clear sign?"
+				th= "Are all toilet room signs marked ? "
+				th(style='height:300px')= "Are the faucets accessible?"
 				
 			for schoolreport in schoolReportsList
 				tr
 					td= schoolreport.num_parking
 					td= schoolreport.num_handi_parking
-					td(style='display:grid')
+					td(style='display:grid;height:300px;width:300px')
 						canvas#handi_img(style='grid-column:1;grid-row:1;z-index:3')
 						img(src="/images/"+schoolreport.handi_park_image style='grid-column:1;grid-row:1;z-index:2')
+						
+					td(style='display:grid;height:300px;width:300px')
+						canvas#handi_stripes_img(style='grid-column:1;grid-row:1;z-index:3')
+						img(src="/images/"+schoolreport.handi_stripes_img style='grid-column:1;grid-row:1;z-index:2;')
+						
+					td= schoolreport.if_ext_bleachers
 					td= schoolreport.if_wheelchair
+					td= schoolreport.if_multi
+					td= schoolreport.if_elevator
+					td= schoolreport.if_elevator_wide
+					td= schoolreport.if_ramp
+					td= schoolreport.if_ramp_wide
+					td= schoolreport.if_class_wheel
+					td= schoolreport.if_passage_wide
+					td(style='display:grid;height:300px;width:300px')
+						canvas#doorhandle_img(style='grid-column:1;grid-row:1;z-index:3;height:300px;width:300px')
+						img(src="/images/"+schoolreport.door_handle_image style='grid-column:1;grid-row:1;z-index:2')
+					td= schoolreport.if_knee_clear
+					td= schoolreport.if_class_access_seats
+					td= schoolreport.if_listen_device
+					td(style='display:grid;height:300px;width:300px')
+						canvas#quietzone_img(style='grid-column:1;grid-row:1;z-index:3')
+						img(src="/images/"+schoolreport.quiet_zone_image style='grid-column:1;grid-row:1;z-index:2')
+					td= schoolreport.if_bath_sign
+					td(style='display:grid;height:300px;width:300px')
+						canvas#faucets_img(style='grid-column:1;grid-row:1;z-index:3;height:300px;width:300px')
+						img(src="/images/"+schoolreport.faucet_image style='grid-column:1;grid-row:1;z-index:2')
+					
+				tr
+					td
+					td
+					td(style='display:grid;height:300px;width:300px')
+						p(style='width:80%')="label: "+handicapImgInfo.name+"   confidence %: "+handicapImgInfo.confidence
+						p="Accessible parking should be arranged closest to the entrance."
+					td(style='display:grid;height:300px;width:300px')
+						p(style='width:80%')="label: "+stripesImgInfo.name+"   confidence %: "+stripesImgInfo.confidence
+						p="Striped access aisle between parking spaces should be provided for exiting."
+					td
+					td
+					td
+					td
+					td
+					td
+					td
+						p="Accessible route applies to both interior and exterior spaces."
+					td
+					td
+					td(style='display:grid;height:300px;width:300px')
+						p(style='width:70%')="label: "+doorHandleImgInfo.name+"   confidence %: "+doorHandleImgInfo.confidence
+						p="Accessible door handles should not require tight grip or twisting to use."
+					td
+					td
+					td
+					td(style='display:grid;height:300px;width:300px')
+						p(style='width:80%')="label: "+quiteZoneImgInfo.name+"   confidence %: "+quiteZoneImgInfo.confidence
+						p="Quiet Zones are areas that typically have less activity and spaces to sit and regroup after becoming overstimulated."
+					td
+					td(style='display:grid;height:300px;width:300px')
+						p(style='width:70%')="label: "+faucetsImgInfo.name+"   confidence %: "+faucetsImgInfo.confidence
+						p="Accessible faucets should not require tight grip or twisting to use."
+
+					
 		script.
-			var c = document.getElementById("handi_img");
-			var ctx = c.getContext("2d");
-			ctx.lineWidth = "2";
-			ctx.strokeStyle = "red";
-			ctx.rect(#{handicapImgInfo.top}, #{handicapImgInfo.left}, #{handicapImgInfo.width}, #{handicapImgInfo.height});
-			ctx.stroke();
+			var ch = document.getElementById("handi_img");
+			var ctxh = ch.getContext("2d");
+			ctxh.lineWidth = "2";
+			ctxh.strokeStyle = "red";
+			ctxh.rect(#{handicapImgInfo.left}, #{handicapImgInfo.top}, #{handicapImgInfo.width}, #{handicapImgInfo.height});
+			ctxh.stroke();
+
+			var cs = document.getElementById("handi_stripes_img");
+			var ctxs = cs.getContext("2d");
+			ctxs.lineWidth = "2";
+			ctxs.strokeStyle = "red";
+			ctxs.rect(#{stripesImgInfo.left}, #{stripesImgInfo.top}, #{stripesImgInfo.width}, #{stripesImgInfo.height});
+			ctxs.stroke();
+
+			var cd = document.getElementById("doorhandle_img");
+			var ctxd = cd.getContext("2d");
+			ctxd.lineWidth = "2";
+			ctxd.strokeStyle = "red";
+			ctxd.rect(#{doorHandleImgInfo.left}, #{doorHandleImgInfo.top}, #{doorHandleImgInfo.width}, #{doorHandleImgInfo.height});
+			//ctxd.rect(19.42,40,155,70);
+			ctxd.stroke();
+
+			var cq = document.getElementById("quietzone_img");
+			var ctxq = cq.getContext("2d");
+			ctxq.lineWidth = "2";
+			ctxq.strokeStyle = "red";
+			ctxq.rect(#{quiteZoneImgInfo.left}, #{quiteZoneImgInfo.top}, #{quiteZoneImgInfo.width}, #{quiteZoneImgInfo.height});
+			ctxq.stroke();
+
+			var cf = document.getElementById("faucets_img");
+			var ctxf = cf.getContext("2d");
+			ctxf.lineWidth = "2";
+			ctxf.strokeStyle = "red";
+			ctxf.rect(#{faucetsImgInfo.left}, #{faucetsImgInfo.top}, #{faucetsImgInfo.width}, #{faucetsImgInfo.height});
+			ctxf.stroke();
