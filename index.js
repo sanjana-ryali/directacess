@@ -8,6 +8,7 @@ var router = express.Router();
 var multer = require('multer');
 
 //multer object creation
+// any images that get uploaded go to public/images/
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/images/')
@@ -18,7 +19,7 @@ var storage = multer.diskStorage({
 })
  
 var upload = multer({ storage: storage })
-
+// Allows user to pick only one file at a time
 var imgFileUpload = upload.fields([
 	{ name: 'handi_park_image', maxCount:1}, 
 	{ name: 'handi_stripes_image', maxCount:1},
@@ -45,7 +46,11 @@ router.get('/analytics', function(req, res, next) {
 router.post('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-
+router.get('/load_report', function (req, res, next) {
+	console.log(req.param('id'));
+	dbconn.getData(res);
+});
+// Calls DB Connection to save to reports
 router.post('/building_report', function (req, res, next) {
 
 	const jsondata = JSON.parse(JSON.stringify(req.body));
@@ -63,11 +68,8 @@ router.post('/building_report', function (req, res, next) {
 	else if (jsondata.dropDown == "Hotel"){
 		res.render('hotel_survey', { title: 'Hotel Survey', id: id});
 	}
-	//var str2 = dbconn.saveData(req);
-	//console.log(str2);
-	//else res.render('save_report', { title: 'Save Report' });
 });
-
+// Calls DB Connection to save school report
 router.post('/save_report', function (req, res) {
 	imgFileUpload(req, res, function(err) {
 		if(err){
@@ -82,11 +84,6 @@ router.post('/save_report', function (req, res) {
 	
 });
 
-/*router.post('/save_image', upload.single('imageupload'),function(req, res) {
-	console.log(req.file.filename);
-	ai.processImage(req.file.filename);
-	res.render('analytics', { title: 'Analytics' });
-});*/
 router.post('/save_hotel_report', function (req, res) {
 	imgFileUpload(req, res, function(err) {
 		if(err){

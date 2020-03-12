@@ -57,7 +57,9 @@ module.exports = {
   	});
 		return id;
 	},
+  // Saving school report data into the database
   saveSchoolReport: function(req, res) {
+    //Connecting to mySql
     var con = mysql.createConnection({
         host: "localhost",
         user: "root",
@@ -70,13 +72,13 @@ module.exports = {
         if (err) throw err;
         console.log("Connected! SaveData");
     });
-
+    // Gets image file name from UI form
     const handicap_parking_img = (req.files['handi_park_image'] == undefined) ? "" : req.files['handi_park_image'][0].filename;
     const handi_stripes_img = (req.files['handi_stripes_image'] == undefined) ? "" : req.files['handi_stripes_image'][0].filename;
     const door_handle_image = (req.files['door_handle_image'] == undefined) ? "" : req.files['door_handle_image'][0].filename;
     const quiet_zone_image = (req.files['quiet_zone_image'] == undefined) ? "" : req.files['quiet_zone_image'][0].filename;
     const faucet_img = (req.files['faucet_image'] == undefined) ? "" : req.files['faucet_image'][0].filename;
-
+    // Gets other input from UI form 
     const id = req.body.id;
     console.log("Report ID: "+id);
     const if_handi_stripes = (req.body.if_handi_stripes == undefined) ? false : true;
@@ -100,7 +102,9 @@ module.exports = {
 
     var handicapImgInfo
     if(handicap_parking_img != ""){
+      // API call to analyze_image.js which calls AWS Reko
       ai.processHandicapImage(handicap_parking_img);
+      // Reads JSON file with name, confidence, bounding box
       handicapImgInfo = JSON.parse(fs.readFileSync('config-files/'+handicap_parking_img+'.json'));
       console.log("handicapImgInfo info: ");
       console.log(handicapImgInfo);
@@ -139,7 +143,7 @@ module.exports = {
     }
 
     var values = [];
-
+    // Adding the input values to an array
     values.push([id, req.body.num_parking, req.body.num_handi_parking, 
       handicap_parking_img, if_handi_stripes, handi_stripes_img, 
       if_ext_bleachers, if_wheelchair, if_multi,
@@ -152,7 +156,7 @@ module.exports = {
 
     console.log("values: ");
     console.log(values);
-
+    // Query to the database where input values are inserted
     con.query('INSERT INTO school_reports VALUES ?', [values], function(err,result) {
         if (err) throw err;
         console.log("inserted data");
@@ -160,12 +164,13 @@ module.exports = {
 
     var reportsList = [];
     var schoolReportsList = [];
-
+    // select statement to get reports
     const selectReports = "SELECT * FROM reports WHERE ID= '"+id+"'";
+    // select statement to get school reports
     const selectSchoolReports = "SELECT * FROM school_reports WHERE ID= '"+id+"'";
     console.log(selectReports);
     console.log(selectSchoolReports);
-
+    // Query to run multiple select statements
     con.query(selectReports+"; "+selectSchoolReports, function(err, rows, fields) {
         if (err) throw err;
         for (var i = 0; i < rows[0].length; i++) {
@@ -178,6 +183,7 @@ module.exports = {
             'surveyors':rows[0][i].surveyors,
             'date':rows[0][i].date
           }
+          // put all values from reports table in an array
           reportsList.push(report);
         }
         for (var i = 0; i < rows[1].length; i++) {
@@ -204,6 +210,7 @@ module.exports = {
             'if_bath_sign': !!+rows[1][i].if_bath_sign,
             'faucet_image':rows[1][i].faucets_image
           }
+          // put all values from school reports table in an array
           schoolReportsList.push(schoolReport);
         }
         console.log("schoolReportsList in saveSchoolReport");
@@ -212,6 +219,7 @@ module.exports = {
         console.log(reportsList);
         var access_score = (9+Math.random()).toFixed(1);
         console.log("access_score: "+access_score);
+        // draw view_school_report.pug using following values
         res.render('view_school_report', { reportsList: reportsList, 
           schoolReportsList: schoolReportsList, 
           handicapImgInfo: handicapImgInfo,

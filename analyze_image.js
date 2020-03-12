@@ -1,11 +1,15 @@
 
-var AWS = require('aws-sdk');
+// import AWS Rekogntion libraries, AWS SDK installed as a node module
+var AWS = require('aws-sdk'); 
+// Node library to get the size of the image
 var sizeOf = require('image-size');
+// library to get all file commands
 const fs = require('fs');
-
+// loading AWS config, loggin in to AWS
 AWS.config.loadFromPath('./config.json');
 
 module.exports = {
+	//not using this method
 	processImage: function(filename) {
 		console.log("Calling AWS Rekognition");
     	var rekognition = new AWS.Rekognition();
@@ -25,7 +29,7 @@ module.exports = {
 		});
     	
 	},
-
+	// processing handicapped parking image 
 	processHandicapImage: function(filename) {
 		console.log("Calling AWS Rekognition "+filename);
     	
@@ -102,15 +106,17 @@ module.exports = {
 	}
 }
 function processAPICall(params, filename){
-
+	// instantiate Rekognition
 	var rekognition = new AWS.Rekognition();
 	console.log(params);
 	console.log(filename);
+	// no operation
 	if(filename == "") return;
-
+	// getting image dimensions (height and width)
 	var dim = sizeOf('public/images/'+filename);
 
 	console.log(dim);
+	// API Call to AWS Rekognition
 	rekognition.detectCustomLabels(params, function(err, data) {""
 		if (err) {
 			//console.log(err, err.stack); // an error occurred
@@ -118,18 +124,22 @@ function processAPICall(params, filename){
 		else {
 			console.log(data); 
 			console.log(JSON.stringify(data));
+			// Converting returned data into JSON
 			var jsonData = JSON.parse(JSON.stringify(data));
 			console.log(jsonData.CustomLabels.length);
+			// for each label returned
 			for (var i = 0; i < jsonData.CustomLabels.length; i++) {
 				var handicapImgInfo = {
 					'name':jsonData.CustomLabels[i].Name,
 					'confidence':(jsonData.CustomLabels[i].Confidence).toFixed(1),
+					// Drawing bounding boxes using ratio
 					'width':jsonData.CustomLabels[i].Geometry.BoundingBox.Width * dim.width,
 					'height':jsonData.CustomLabels[i].Geometry.BoundingBox.Height * dim.height,
 					'left':jsonData.CustomLabels[i].Geometry.BoundingBox.Left * dim.width,
 					'top':jsonData.CustomLabels[i].Geometry.BoundingBox.Top * dim.height
 				}
 				console.log(handicapImgInfo);
+				// write to JSON file
 				fs.writeFileSync('config-files/'+filename+'.json', JSON.stringify(handicapImgInfo, null, 2));
 			}
 		}         
